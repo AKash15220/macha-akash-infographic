@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macha Akash - Technical Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Infographic Plan & Narrative Structure:
+    1.  Introduction/Hook: A hero section with the user's name and a powerful professional summary.
+    2.  Core Competencies Overview: High-level view of skills using large numbers and icons to showcase key areas like languages, frameworks, and projects.
+    3.  Technical Skills Deep Dive: A bar chart comparing proficiency across different technologies (Languages, Frameworks, etc.). This addresses the "Compare" goal.
+    4.  Project Showcase - Online Compiler: A detailed section using "Single Big Number" for KPIs (user growth, satisfaction) and a Donut chart for language support composition. This addresses "Inform" and "Compare" goals.
+    5.  Project Showcase - CCTV Analytics: Another detailed section using "Single Big Number" for the key accuracy metric and a stylized flow diagram (HTML/CSS) to show the process. This addresses "Inform" and "Organize" goals.
+    6.  Education & Certifications Timeline: A vertical timeline created with HTML/CSS to show progression over time. This addresses the "Change" goal.
+    7.  Conclusion: A call to action with contact information.
+
+    Visualization Choices & Justification (NO SVG, NO Mermaid JS):
+    -   Professional Summary: Text. Goal: Inform. Method: Styled HTML.
+    -   Skill Categories: Bar Chart. Goal: Compare. Method: Chart.js Canvas. Justification: Effectively compares different skill categories side-by-side.
+    -   Online Compiler User Growth (15%): Big Number. Goal: Inform. Method: Styled HTML. Justification: Makes the metric stand out.
+    -   Online Compiler Satisfaction (85%): Donut Chart. Goal: Compare. Method: Chart.js Canvas. Justification: Visually represents a part-to-whole relationship effectively.
+    -   CCTV Analytics Accuracy (95%): Big Number. Goal: Inform. Method: Styled HTML. Justification: Highlights the most critical project outcome.
+    -   CCTV Analytics Process Flow: Diagram. Goal: Organize. Method: Structured HTML/CSS with Tailwind. Justification: Clearly shows a process sequence without using prohibited libraries.
+    -   Education/Career Timeline: Timeline. Goal: Change. Method: Structured HTML/CSS with Tailwind. Justification: Effectively visualizes events over time.
+
+    Color Palette Selection:
+    -   Name: Energetic & Playful.
+    -   HEX Codes: #00F0B5 (Primary Accent), #00E0FF (Secondary Accent), #6A44FF (Tertiary Accent/Text), #2D275A (Dark Background/Text), #F5F5F5 (Light Background).
+    -   Justification: This vibrant, high-contrast palette is modern, professional, and well-suited for a tech-focused infographic, making it engaging and easy to read.
+
+    Confirmation: Neither Mermaid JS nor SVG graphics were used in the creation of this document. All visualizations are rendered using Chart.js on a Canvas element or constructed with standard HTML and Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            color: #2D275A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-number {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+            color: #00F0B5;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #00E0FF;
+            border: 4px solid #6A44FF;
+        }
+        .timeline-line {
+            position: absolute;
+            left: -21px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #6A44FF;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 sm:p-8">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black text-6A44FF mb-2">MACHA AKASH</h1>
+            <p class="text-xl md:text-2xl font-light max-w-4xl mx-auto">A results-driven Computer Science graduate with proven expertise in project deployment, debugging, and full-stack web development.</p>
+        </header>
+
+        <main>
+            <section id="skills" class="mb-20">
+                <h2 class="text-4xl font-bold text-center mb-4">Technical Skill Matrix</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-10">A snapshot of my capabilities across different technology domains, highlighting a strong foundation in both theoretical concepts and practical application.</p>
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <div class="chart-container" style="height: 400px; max-height: 500px;">
+                        <canvas id="skillsBarChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="project1" class="mb-20">
+                <h2 class="text-4xl font-bold text-center mb-4">Project Spotlight: Online Compiler</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-10">This project showcases my ability to build, deploy, and scale a full-fledged web application from the ground up, focusing on user experience and robust functionality.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white rounded-lg shadow-xl p-8 flex flex-col justify-center items-center">
+                        <h3 class="text-2xl font-bold mb-2">Monthly User Growth</h3>
+                        <p class="kpi-number">15%</p>
+                        <p class="text-base">Achieved through iterative feature implementation based on user feedback.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-xl p-8 flex flex-col justify-center items-center md:col-span-2">
+                         <h3 class="text-2xl font-bold mb-4">User Satisfaction & Language Support</h3>
+                         <p class="text-base mb-4">The compiler's intuitive design led to high user satisfaction, supporting over 40 programming languages.</p>
+                        <div class="chart-container" style="height: 250px;">
+                            <canvas id="satisfactionDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="project2" class="mb-20">
+                <h2 class="text-4xl font-bold text-center mb-4">Project Spotlight: Advanced CCTV Analytics</h2>
+                 <p class="text-center text-lg max-w-3xl mx-auto mb-10">As a team leader in the KAVACH 2023 Hackathon, I spearheaded the development of a deep learning system to enhance security and surveillance capabilities.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-xl p-8 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-2xl font-bold mb-2">Police Station Detection Accuracy</h3>
+                        <p class="kpi-number">95%</p>
+                        <p class="text-base">High accuracy in identifying nearby authorities during suspicious events.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-center mb-6">Real-Time Alert Process Flow</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <span class="flex-shrink-0 bg-6A44FF text-white h-10 w-10 rounded-full flex items-center justify-center font-bold">1</span>
+                                <p class="ml-4 font-semibold">Live CCTV feed is ingested by the system.</p>
+                            </div>
+                            <div class="pl-5">
+                               <span class="text-3xl font-thin text-00E0FF">&#8628;</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="flex-shrink-0 bg-6A44FF text-white h-10 w-10 rounded-full flex items-center justify-center font-bold">2</span>
+                                <p class="ml-4 font-semibold">OpenCV & CNN models process frames to detect suspicious actions.</p>
+                            </div>
+                             <div class="pl-5">
+                                <span class="text-3xl font-thin text-00E0FF">&#8628;</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="flex-shrink-0 bg-6A44FF text-white h-10 w-10 rounded-full flex items-center justify-center font-bold">3</span>
+                                <p class="ml-4 font-semibold">If triggered, an alert is generated with the nearest police station location.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="timeline" class="mb-16">
+                 <h2 class="text-4xl font-bold text-center mb-12">Career & Education Timeline</h2>
+                 <div class="relative max-w-2xl mx-auto">
+                    <div class="timeline-line"></div>
+                     <div class="mb-12 relative pl-8 timeline-item">
+                        <p class="absolute -left-10 text-center text-sm font-semibold text-6A44FF bg-white px-1">2024</p>
+                        <h3 class="text-xl font-bold">Graduated B.Tech & Built Online Compiler</h3>
+                        <p class="text-md">Completed my Bachelor of Technology in CSE and developed a full-stack online compiler project, managing its deployment and feature growth.</p>
+                    </div>
+                     <div class="mb-12 relative pl-8 timeline-item">
+                        <p class="absolute -left-10 text-center text-sm font-semibold text-6A44FF bg-white px-1">2023</p>
+                        <h3 class="text-xl font-bold">KAVACH Hackathon & NPTEL Certification</h3>
+                        <p class="text-md">Led a team in a national-level hackathon and completed "Joy of Computing with Python" certification, strengthening my practical and theoretical skills.</p>
+                    </div>
+                     <div class="mb-12 relative pl-8 timeline-item">
+                        <p class="absolute -left-10 text-center text-sm font-semibold text-6A44FF bg-white px-1">2022</p>
+                        <h3 class="text-xl font-bold">Python Specialization</h3>
+                        <p class="text-md">Earned a Python certification from the University of Michigan, solidifying my primary programming language expertise.</p>
+                    </div>
+                     <div class="relative pl-8 timeline-item">
+                        <p class="absolute -left-10 text-center text-sm font-semibold text-6A44FF bg-white px-1">2020</p>
+                        <h3 class="text-xl font-bold">Began B.Tech Journey</h3>
+                        <p class="text-md">Started my undergraduate studies in Computer Science Engineering at Mahatma Gandhi Institute of Technology.</p>
+                    </div>
+                 </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center border-t-2 border-gray-200 pt-8 mt-12">
+             <h2 class="text-3xl font-bold text-6A44FF mb-4">Let's Build Something Great Together</h2>
+            <p class="text-lg mb-4">I am actively seeking new opportunities in software and web development.</p>
+            <div class="flex justify-center items-center space-x-6">
+                <a href="mailto:macha.akash000@gmail.com" class="text-blue-500 hover:underline">macha.akash000@gmail.com</a>
+                <a href="https://www.linkedin.com/in/machaakash1522" target="_blank" class="text-blue-500 hover:underline">LinkedIn</a>
+                <p class="text-gray-600">+91 6300058278</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const vibrantPalette = {
+            primary: '#00F0B5',
+            secondary: '#00E0FF',
+            tertiary: '#6A44FF',
+            dark: '#2D275A',
+            light: '#F5F5F5'
+        };
+
+        const wrapLabel = (label, maxLength = 16) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: vibrantPalette.dark,
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: vibrantPalette.tertiary },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: vibrantPalette.tertiary },
+                    grid: { color: '#e0e0e0' }
+                }
+            }
+        };
+
+        const skillsData = {
+            labels: ['Languages', 'Frameworks & Libraries', 'Web Tech', 'Databases', 'Core Concepts'],
+            datasets: [{
+                label: 'Skill Count',
+                data: [3, 5, 3, 2, 2],
+                backgroundColor: [vibrantPalette.primary, vibrantPalette.secondary, vibrantPalette.tertiary, vibrantPalette.primary, vibrantPalette.secondary],
+                borderColor: vibrantPalette.dark,
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        };
+
+        new Chart(document.getElementById('skillsBarChart'), {
+            type: 'bar',
+            data: skillsData,
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                 plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+            }
+        });
+
+        const satisfactionData = {
+            labels: ['Satisfied Users', 'Neutral/Unsatisfied'],
+            datasets: [{
+                data: [85, 15],
+                backgroundColor: [vibrantPalette.primary, '#e0e0e0'],
+                borderColor: [vibrantPalette.light],
+                borderWidth: 4,
+                hoverOffset: 4
+            }]
+        };
+
+        new Chart(document.getElementById('satisfactionDonutChart'), {
+            type: 'doughnut',
+            data: satisfactionData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            color: vibrantPalette.dark,
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+            }
+        });
+    </script>
+
+</body>
+</html>
